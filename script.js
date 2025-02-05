@@ -1,4 +1,4 @@
-﻿const words = ["apple", "table", "grape", "horse", "plant", "chair"]; // Predefined smaller list of words
+﻿//const words = ["apple", "table", "grape", "horse", "plant", "chair"]; // Predefined smaller list of words
 let currentRow = 0;
 let currentCol = 0;
 const maxGuesses = 6;
@@ -6,7 +6,7 @@ let wordsList = {}; // This will hold the words from the JSON file
 let fiveLetterWords = [];
 
 // This is for storing the target word, initially picked from the smaller list
-let targetWord = words[Math.floor(Math.random() * words.length)];
+//let targetWord = words[Math.floor(Math.random() * words.length)];
 
 document.addEventListener("DOMContentLoaded", () => {
     createBoard();
@@ -25,6 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Error loading the word list:', error);
             showMessage("Error loading word list. Please try again.");
         });
+
+    fetch('words.json')
+        .then(response => response.json())
+        .then(data => {
+            const words = data.words;
+            const targetWord = words[Math.floor(Math.random() * words.length)];
+            console.log(targetWord);
+        })
+        .catch(error => console.error('Error loading JSON:', error));
 });
 
 // Function to create the board layout

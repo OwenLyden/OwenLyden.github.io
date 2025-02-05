@@ -53,7 +53,7 @@ function createBoard() {
     }
 }
 
-function createKeyboardold() {
+function createKeyboard() {
     const keyboard = document.getElementById("keyboard");
     keyboard.innerHTML = ""; // Clear previous keys
 
@@ -96,7 +96,7 @@ function createKeyboardold() {
 
     keyboard.appendChild(specialKeys);
 }
-function createKeyboard() {
+function createKeyboardnew() {
     const keyboard = document.getElementById("keyboard");
     keyboard.innerHTML = ""; // Clear previous keys
 

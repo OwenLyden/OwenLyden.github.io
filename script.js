@@ -45,7 +45,8 @@ function createBoard() {
 // Function to create the keyboard layout
 function createKeyboard() {
     const keyboard = document.getElementById("keyboard");
-    const keys = "abcdefghijklmnopqrstuvwxyz".split("");
+    //const keys = "abcdefghijklmnopqrstuvwxyz".split("");
+    const keys = "qwertyuiopasdfghjklzxcvbnm".split("");
 
     keys.forEach(letter => {
         const key = document.createElement("div");

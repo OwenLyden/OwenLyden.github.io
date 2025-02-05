@@ -1,0 +1,76 @@
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	background-color: #121213;
+	color: white;
+}
+
+h1 {
+	margin-bottom: 10px;
+}
+
+#game-board {
+	display: grid;
+	grid-template-rows: repeat(6, 1fr);
+	gap: 10px;
+	margin: 20px auto;
+	width: 250px;
+}
+
+.row {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+}
+
+.tile {
+	width: 45px;
+	height: 45px;
+	font-size: 24px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 45px;
+	border: 2px solid #3a3a3c;
+	background-color: #121213;
+	color: white;
+}
+
+.correct {
+	background-color: #538d4e;
+}
+
+.present {
+	background-color: #b59f3b;
+}
+
+.absent {
+	background-color: #3a3a3c;
+}
+
+#keyboard {
+	margin-top: 20px;
+}
+
+.key {
+	display: inline-block;
+	margin: 5px;
+	padding: 10px 15px;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: #818384;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+	.key:hover {
+		background-color: #a1a1a1;
+	}
+
+#message {
+	margin-top: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}

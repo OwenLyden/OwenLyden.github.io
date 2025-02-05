@@ -25,27 +25,46 @@ function createBoard() {
 
 function createKeyboard() {
     const keyboard = document.getElementById("keyboard");
-    const keys = "abcdefghijklmnopqrstuvwxyz".split("");
+    keyboard.innerHTML = ""; // Clear previous keys
 
-    keys.forEach(letter => {
-        const key = document.createElement("div");
-        key.classList.add("key");
-        key.innerText = letter;
-        key.addEventListener("click", () => handleKeyPress(letter));
-        keyboard.appendChild(key);
+    const keyRows = [
+        "qwertyuiop",
+        "asdfghjkl",
+        "zxcvbnm"
+    ];
+
+    keyRows.forEach(row => {
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("key-row");
+
+        row.split("").forEach(letter => {
+            const key = document.createElement("div");
+            key.classList.add("key");
+            key.innerText = letter;
+            key.addEventListener("click", () => handleKeyPress(letter));
+            rowDiv.appendChild(key);
+        });
+
+        keyboard.appendChild(rowDiv);
     });
 
+    // Special keys
+    const specialKeys = document.createElement("div");
+    specialKeys.classList.add("key-row");
+
     const enterKey = document.createElement("div");
-    enterKey.classList.add("key");
+    enterKey.classList.add("key", "special-key");
     enterKey.innerText = "Enter";
     enterKey.addEventListener("click", submitGuess);
-    keyboard.appendChild(enterKey);
+    specialKeys.appendChild(enterKey);
 
     const backspaceKey = document.createElement("div");
-    backspaceKey.classList.add("key");
+    backspaceKey.classList.add("key", "special-key");
     backspaceKey.innerText = "←";
     backspaceKey.addEventListener("click", deleteLetter);
-    keyboard.appendChild(backspaceKey);
+    specialKeys.appendChild(backspaceKey);
+
+    keyboard.appendChild(specialKeys);
 }
 
 function handleKeyPress(letter) {

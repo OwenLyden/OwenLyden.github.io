@@ -91,11 +91,7 @@ function submitGuess() {
         return;
     }
 
-    const guess = getCurrentWord();
-    if (!words.includes(guess)) {
-        showMessage("Not in word list!");
-        return;
-    }
+    
 
     checkGuess(guess);
     currentRow++;

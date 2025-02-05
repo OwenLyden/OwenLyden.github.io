@@ -1,4 +1,7 @@
-﻿//const words = ["apple", "table", "grape", "horse", "plant", "chair"]; // Predefined smaller list of words
+﻿// words = ["apple", "table", "grape", "horse", "plant", "chair"]; // Predefined smaller list of words
+let words = [];
+let targetWord = "";
+
 let currentRow = 0;
 let currentCol = 0;
 const maxGuesses = 6;
@@ -34,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(targetWord);
         })
         .catch(error => console.error('Error loading JSON:', error));
+
 });
 
 // Function to create the board layout

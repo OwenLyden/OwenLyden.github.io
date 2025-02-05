@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch('words.json')
         .then(response => response.json())
         .then(data => {
-            const words = data.words;
-            const targetWord = words[Math.floor(Math.random() * words.length)];
+            words = data.words;
+            targetWord = words[Math.floor(Math.random() * words.length)];
             console.log(targetWord);
         })
         .catch(error => console.error('Error loading JSON:', error));

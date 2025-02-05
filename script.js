@@ -96,30 +96,7 @@ function createKeyboard() {
 
     keyboard.appendChild(specialKeys);
 }
-function createKeyboardnew() {
-    const keyboard = document.getElementById("keyboard");
-    keyboard.innerHTML = ""; // Clear previous keys
 
-    const keyRows = [
-        "qwertyuiop",
-        "asdfghjkl",
-        "zxcvbnm"
-    ];
-
-    keyRows.forEach(row => {
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("key-row");
-
-        row.split("").forEach(letter => {
-            const key = document.createElement("div");
-            key.classList.add("key");
-            key.innerText = letter;
-            key.addEventListener("click", () => handleKeyPress(letter));
-            rowDiv.appendChild(key);
-        });
-
-        keyboard.appendChild(rowDiv);
-    });
 function handleKeyPress(letter) {
     if (currentCol < 5 && currentRow < maxGuesses) {
         const row = document.getElementsByClassName("row")[currentRow];

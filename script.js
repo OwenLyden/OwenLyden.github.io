@@ -55,17 +55,19 @@ function createKeyboard() {
         keyboard.appendChild(key);
     });
 
+
     const enterKey = document.createElement("div");
-    enterKey.classList.add("key");
+    enterKey.classList.add("key", "enter"); // Add "enter" class
     enterKey.innerText = "Enter";
     enterKey.addEventListener("click", submitGuess);
     keyboard.appendChild(enterKey);
 
     const backspaceKey = document.createElement("div");
-    backspaceKey.classList.add("key");
+    backspaceKey.classList.add("key", "backspace"); // Add "backspace" class
     backspaceKey.innerText = "←";
     backspaceKey.addEventListener("click", deleteLetter);
     keyboard.appendChild(backspaceKey);
+
 }
 
 // Handle keyboard letter press

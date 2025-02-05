@@ -54,8 +54,10 @@ h1 {
 
 .key {
 	display: inline-block;
+	width: 30px; /* Set width for standard letter keys */
+	height: 35px; /* Maintain a uniform height */
 	margin: 5px;
-	padding: 10px 15px;
+	padding: 10px 0; /* Adjust padding for proper centering */
 	font-size: 18px;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -63,12 +65,21 @@ h1 {
 	color: white;
 	border-radius: 5px;
 	cursor: pointer;
+	text-align: center;
 }
 
 	.key:hover {
 		background-color: #a1a1a1;
 	}
 
+	/* Special width for Enter and Backspace keys */
+	.key.enter {
+		width: 80px; /* Wider Enter key */
+	}
+
+	.key.backspace {
+		width: 60px; /* Wider Backspace key */
+	}
 #message {
 	margin-top: 10px;
 	font-size: 18px;

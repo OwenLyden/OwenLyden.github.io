@@ -142,7 +142,20 @@ function disableKeyboard() {
 // Check the guess against the target word
 function checkGuess(guess) {
     const messageElement = document.getElementById("message");
+    const row = document.getElementsByClassName("row")[currentRow];
 
+    for (let i = 0; i < 5; i++) {
+        const letter = guess[i];
+        const tile = row.children[i];
+
+        if (letter === targetWord[i]) {
+            tile.classList.add("correct");
+        } else if (targetWord.includes(letter)) {
+            tile.classList.add("present");
+        } else {
+            tile.classList.add("absent");
+        }
+    }
     if (guess === targetWord) {
         messageElement.textContent = `'${guess}' is the correct word!`;
         messageElement.style.color = 'green';
@@ -151,3 +164,5 @@ function checkGuess(guess) {
         messageElement.style.color = 'red';
     }
 }
+
+

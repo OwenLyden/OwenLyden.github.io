@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             words = data.words;
             targetWord = words[Math.floor(Math.random() * words.length)];
             console.log(targetWord);
-            alert("Start Guessing");
+            //alert("Start Guessing");
         })
         .catch(error => console.error('Error loading JSON:', error));
 

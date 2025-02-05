@@ -27,7 +27,6 @@
     "scold", "brine", "twine", "brisk", "swamp", "twist", "slink", "twang", "swirl", "scowl"
 ];
 
-const targetWord = words[Math.floor(Math.random() * words.length)];
  // Sample words
 const targetWord = words[Math.floor(Math.random() * words.length)];
 let currentRow = 0;

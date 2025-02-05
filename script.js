@@ -1,14 +1,33 @@
-﻿const words = ["apple", "table", "grape", "horse", "plant", "chair"]; // Sample words
-const targetWord = words[Math.floor(Math.random() * words.length)];
+﻿const words = ["apple", "table", "grape", "horse", "plant", "chair"]; // Predefined smaller list of words
 let currentRow = 0;
 let currentCol = 0;
 const maxGuesses = 6;
+let wordsList = {}; // This will hold the words from the JSON file
+let fiveLetterWords = [];
+
+// This is for storing the target word, initially picked from the smaller list
+let targetWord = words[Math.floor(Math.random() * words.length)];
 
 document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     createKeyboard();
+
+    // Load the JSON data (replace 'Dictionary.json' with the path to your JSON file)
+    fetch('Dictionary.json')
+        .then(response => response.json())
+        .then(data => {
+            wordsList = data;
+            // Filter out 5-letter words from the loaded data
+            fiveLetterWords = Object.keys(wordsList).filter(word => word.length === 5);
+            showMessage("Word list loaded. You can start guessing!");
+        })
+        .catch(error => {
+            console.error('Error loading the word list:', error);
+            showMessage("Error loading word list. Please try again.");
+        });
 });
 
+// Function to create the board layout
 function createBoard() {
     const board = document.getElementById("game-board");
     for (let i = 0; i < maxGuesses; i++) {
@@ -23,50 +42,33 @@ function createBoard() {
     }
 }
 
+// Function to create the keyboard layout
 function createKeyboard() {
     const keyboard = document.getElementById("keyboard");
-    keyboard.innerHTML = ""; // Clear previous keys
+    const keys = "abcdefghijklmnopqrstuvwxyz".split("");
 
-    const keyRows = [
-        "qwertyuiop",
-        "asdfghjkl",
-        "zxcvbnm"
-    ];
-
-    keyRows.forEach(row => {
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("key-row");
-
-        row.split("").forEach(letter => {
-            const key = document.createElement("div");
-            key.classList.add("key");
-            key.innerText = letter;
-            key.addEventListener("click", () => handleKeyPress(letter));
-            rowDiv.appendChild(key);
-        });
-
-        keyboard.appendChild(rowDiv);
+    keys.forEach(letter => {
+        const key = document.createElement("div");
+        key.classList.add("key");
+        key.innerText = letter;
+        key.addEventListener("click", () => handleKeyPress(letter));
+        keyboard.appendChild(key);
     });
 
-    // Special keys
-    const specialKeys = document.createElement("div");
-    specialKeys.classList.add("key-row");
-
     const enterKey = document.createElement("div");
-    enterKey.classList.add("key", "special-key");
+    enterKey.classList.add("key");
     enterKey.innerText = "Enter";
     enterKey.addEventListener("click", submitGuess);
-    specialKeys.appendChild(enterKey);
+    keyboard.appendChild(enterKey);
 
     const backspaceKey = document.createElement("div");
-    backspaceKey.classList.add("key", "special-key");
+    backspaceKey.classList.add("key");
     backspaceKey.innerText = "←";
     backspaceKey.addEventListener("click", deleteLetter);
-    specialKeys.appendChild(backspaceKey);
-
-    keyboard.appendChild(specialKeys);
+    keyboard.appendChild(backspaceKey);
 }
 
+// Handle keyboard letter press
 function handleKeyPress(letter) {
     if (currentCol < 5 && currentRow < maxGuesses) {
         const row = document.getElementsByClassName("row")[currentRow];
@@ -76,6 +78,7 @@ function handleKeyPress(letter) {
     }
 }
 
+// Delete letter
 function deleteLetter() {
     if (currentCol > 0) {
         currentCol--;
@@ -85,14 +88,28 @@ function deleteLetter() {
     }
 }
 
+// Submit the guess
 function submitGuess() {
     if (currentCol < 5) {
         showMessage("Not enough letters!");
         return;
     }
 
-    
+    const guess = getCurrentWord();
 
+    // First, check if the guess exists in the Dictionary.json
+    if (fiveLetterWords.length === 0) {
+        showMessage("Word list is still loading, please try again in a moment.");
+        return;
+    }
+
+    // Check if the guess is a valid word from the loaded dictionary (Dictionary.json)
+    if (!fiveLetterWords.includes(guess)) {
+        showMessage(`'${guess}' is not a valid word. Try again!`);
+        return;
+    }
+
+    // Proceed with checking against the target word
     checkGuess(guess);
     currentRow++;
     currentCol = 0;
@@ -106,32 +123,31 @@ function submitGuess() {
     }
 }
 
+// Get the current word from the board
 function getCurrentWord() {
     const row = document.getElementsByClassName("row")[currentRow];
     return Array.from(row.children).map(tile => tile.innerText).join("").toLowerCase();
 }
 
-function checkGuess(guess) {
-    const row = document.getElementsByClassName("row")[currentRow];
-
-    for (let i = 0; i < 5; i++) {
-        const letter = guess[i];
-        const tile = row.children[i];
-
-        if (letter === targetWord[i]) {
-            tile.classList.add("correct");
-        } else if (targetWord.includes(letter)) {
-            tile.classList.add("present");
-        } else {
-            tile.classList.add("absent");
-        }
-    }
-}
-
+// Display a message to the player
 function showMessage(msg) {
     document.getElementById("message").innerText = msg;
 }
 
+// Disable the keyboard after the game ends
 function disableKeyboard() {
     document.getElementById("keyboard").innerHTML = "";
+}
+
+// Check the guess against the target word
+function checkGuess(guess) {
+    const messageElement = document.getElementById("message");
+
+    if (guess === targetWord) {
+        messageElement.textContent = `'${guess}' is the correct word!`;
+        messageElement.style.color = 'green';
+    } else {
+        messageElement.textContent = `'${guess}' is not correct. Try again!`;
+        messageElement.style.color = 'red';
+    }
 }

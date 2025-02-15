@@ -38,14 +38,17 @@ h1 {
 
 .correct {
 	background-color: #538d4e;
+	color: white;
 }
 
 .present {
 	background-color: #b59f3b;
+	color: black;
 }
 
 .absent {
 	background-color: #3a3a3c;
+	color: gray;
 }
 
 #keyboard {
@@ -86,18 +89,4 @@ h1 {
 	font-weight: bold;
 }
 
-.correct {
-	background-color: green !important;
-	color: white;
-}
-
-.present {
-	background-color: yellow !important;
-	color: black;
-}
-
-.absent {
-	background-color: black !important;
-	color: white;
-}
 

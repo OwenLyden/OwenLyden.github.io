@@ -39,6 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Error loading JSON:', error));
 
+    fetch("https://random-word-api.herokuapp.com/word?length=5")
+        .then(response => response.json())
+        .then(word => console.log(word[0])) // Logs a 7-letter word
+        .catch(error => console.error("Error fetching word:", error));
+
 });
 
 // Function to create the board layout

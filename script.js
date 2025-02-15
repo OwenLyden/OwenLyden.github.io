@@ -117,6 +117,7 @@ function submitGuess() {
     if (guess === targetWord) {
         showMessage("You Win!");
         disableKeyboard();
+        showResetButton();
     } else if (currentRow === maxGuesses) {
         showMessage(`Game Over! The word was ${targetWord}`);
         disableKeyboard();
@@ -182,3 +183,33 @@ function checkGuess(guess) {
         }
     }
 }
+// Function to show the reset button
+function showResetButton() {
+    const resetButton = document.getElementById("resetButton");
+    resetButton.style.display = "block"; // Show the reset button
+}
+
+// Function to reset the game state
+function resetGame() {
+    // Reset variables and UI elements
+    guess = ""; // Clear current guess
+    row.innerHTML = ""; // Clear the guess row, or reset it if necessary
+
+    // Reset the keys (if necessary)
+    const keys = document.querySelectorAll(".key");
+    keys.forEach(key => {
+        key.classList.remove("correct", "present", "absent"); // Remove color classes
+    });
+
+    // Reset the game variables, like targetWord, letterCount, etc.
+    targetWord = getRandomWord(); // Assuming you have a function to get a new word
+    letterCount = getLetterCount(targetWord); // Update the letter count for the new word
+
+    // Hide the reset button again
+    const resetButton = document.getElementById("resetButton");
+    resetButton.style.display = "none";
+
+    // Optionally, reset the guess input or any other UI elements
+    // document.querySelector("#guessInput").value = ""; // If you have an input field for guesses
+}
+

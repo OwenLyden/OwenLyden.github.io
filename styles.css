@@ -36,17 +36,20 @@ h1 {
 	color: white;
 }
 
-.tile.correct {
-	background-color: #4caf50; /* Green */
-}
+	.tile.correct {
+		background-color: #4caf50; /* Green */
+		color: white;
+	}
 
-.tile.present {
-	background-color: #ffeb3b; /* Yellow */
-}
+	.tile.present {
+		background-color: #ffeb3b; /* Yellow */
+		color: black;
+	}
 
-.tile.absent {
-	background-color: #9e9e9e; /* Gray/Black for absent letters */
-}
+	.tile.absent {
+		background-color: #9e9e9e; /* Gray/Black for absent letters */
+		color: black;
+	}
 
 /* For the keys (keyboard letters) */
 .key.correct {
@@ -60,7 +63,7 @@ h1 {
 }
 
 .key.absent {
-	background-color: #9e9e9e; /* Gray/Black for absent letters */
+	background-color: black; /* Gray/Black for absent letters */
 	color: gray; /* Text color for gray/black */
 }
 

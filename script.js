@@ -141,11 +141,12 @@ function checkGuess(guess) {
 
     let letterCount = {}; // Track letter occurrences in target word
 
+    // Count occurrences of each letter in the target word
     for (let i = 0; i < 5; i++) {
         letterCount[targetWord[i]] = (letterCount[targetWord[i]] || 0) + 1;
     }
 
-    // First pass: Mark correct letters (green)
+    // First pass: Mark correct letters (green) and set key font color
     for (let i = 0; i < 5; i++) {
         const letter = guess[i];
         const tile = row.children[i];
@@ -153,12 +154,12 @@ function checkGuess(guess) {
 
         if (letter === targetWord[i]) {
             tile.classList.add("correct"); // Green for correct position
-            if (key) key.style.backgroundColor = "green";
+            if (key) key.classList.add("correct"); // Apply 'correct' class to the key
             letterCount[letter]--; // Decrease count for correct letters
         }
     }
 
-    // Second pass: Mark misplaced letters (yellow) and incorrect letters (black)
+    // Second pass: Mark misplaced letters (yellow) and incorrect letters (black) and set key font color
     for (let i = 0; i < 5; i++) {
         const letter = guess[i];
         const tile = row.children[i];
@@ -167,18 +168,13 @@ function checkGuess(guess) {
         if (letter !== targetWord[i]) {
             if (targetWord.includes(letter) && letterCount[letter] > 0) {
                 tile.classList.add("present"); // Yellow for misplaced
-                if (key && key.style.backgroundColor !== "green") {
-                    key.style.backgroundColor = "yellow";
-                    key.style.color = "black";
-                }
+                if (key) key.classList.add("present"); // Apply 'present' class to the key
                 letterCount[letter]--; // Reduce count for misplaced letters
             } else {
                 tile.classList.add("absent"); // Black for not in the word
-                if (key && key.style.backgroundColor !== "green" && key.style.backgroundColor !== "yellow") {
-                    key.style.backgroundColor = "black";
-                    key.style.color = "gray";
-                }
+                if (key) key.classList.add("absent"); // Apply 'absent' class to the key
             }
         }
     }
 }
+

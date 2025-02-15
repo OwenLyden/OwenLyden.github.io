@@ -36,19 +36,32 @@ h1 {
 	color: white;
 }
 
-.correct {
-	background-color: #538d4e;
-	color: white;
+.tile.correct {
+	background-color: #4caf50; /* Green */
 }
 
-.present {
-	background-color: #b59f3b;
-	color: black;
+.tile.present {
+	background-color: #ffeb3b; /* Yellow */
 }
 
-.absent {
-	background-color: #3a3a3c;
-	color: gray;
+.tile.absent {
+	background-color: #9e9e9e; /* Gray/Black for absent letters */
+}
+
+/* For the keys (keyboard letters) */
+.key.correct {
+	background-color: #4caf50; /* Green */
+	color: white; /* Text color for green */
+}
+
+.key.present {
+	background-color: #ffeb3b; /* Yellow */
+	color: black; /* Text color for yellow */
+}
+
+.key.absent {
+	background-color: #9e9e9e; /* Gray/Black for absent letters */
+	color: gray; /* Text color for gray/black */
 }
 
 #keyboard {
@@ -71,18 +84,19 @@ h1 {
 	text-align: center;
 }
 
-	.key:hover {
-		background-color: #a1a1a1;
-	}
+.key:hover {
+	background-color: #a1a1a1;
+}
 
 	/* Special width for Enter and Backspace keys */
-	.key.enter {
+.key.enter {
 		width: 80px; /* Wider Enter key */
-	}
+}
 
-	.key.backspace {
-		width: 60px; /* Wider Backspace key */
-	}
+.key.backspace {
+	width: 60px; /* Wider Backspace key */
+}
+
 #message {
 	margin-top: 10px;
 	font-size: 18px;

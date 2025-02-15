@@ -106,4 +106,32 @@ h1 {
 	font-weight: bold;
 }
 
+#resetButton {
+	display: none; /* Hidden by default, shown after game is over */
+	padding: 10px 20px;
+	background-color: #4CAF50; /* Green background */
+	color: white; /* White text */
+	border: none; /* No border */
+	border-radius: 5px; /* Rounded corners */
+	font-size: 16px; /* Slightly larger text */
+	cursor: pointer; /* Pointer cursor on hover */
+	transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+	#resetButton:hover {
+		background-color: #45a049; /* Darker green on hover */
+		transform: scale(1.1); /* Slightly enlarge the button when hovered */
+	}
+
+	#resetButton:active {
+		background-color: #3e8e41; /* Even darker green on click */
+		transform: scale(1); /* Remove the scaling effect on click */
+	}
+
+	#resetButton:focus {
+		outline: none; /* Remove focus outline */
+		box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Add a subtle green glow when focused */
+	}
+
+
 

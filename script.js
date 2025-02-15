@@ -191,25 +191,34 @@ function showResetButton() {
 
 // Function to reset the game state
 function resetGame() {
-    // Reset variables and UI elements
-    guess = ""; // Clear current guess
-    row.innerHTML = ""; // Clear the guess row, or reset it if necessary
+    // Reset game variables
+    currentRow = 0;
+    currentCol = 0;
+    targetWord = words[Math.floor(Math.random() * words.length)]; // Re-pick a new target word
+    console.log(targetWord);
 
-    // Reset the keys (if necessary)
-    const keys = document.querySelectorAll(".key");
-    keys.forEach(key => {
-        key.classList.remove("correct", "present", "absent"); // Remove color classes
+    // Clear all the rows in the game board
+    const rows = document.getElementsByClassName("row");
+    Array.from(rows).forEach(row => {
+        Array.from(row.children).forEach(tile => {
+            tile.innerText = ""; // Clear tile contents
+            tile.classList.remove("correct", "present", "absent"); // Remove all color classes
+        });
     });
 
-    // Reset the game variables, like targetWord, letterCount, etc.
-    targetWord = getRandomWord(); // Assuming you have a function to get a new word
-    letterCount = getLetterCount(targetWord); // Update the letter count for the new word
+    // Reset the keyboard colors
+    const keys = document.querySelectorAll(".key");
+    keys.forEach(key => {
+        key.style.backgroundColor = ""; // Reset the key background color
+        key.style.color = ""; // Reset the key text color
+    });
 
-    // Hide the reset button again
+    // Optionally, hide the reset button after resetting
     const resetButton = document.getElementById("resetButton");
     resetButton.style.display = "none";
 
-    // Optionally, reset the guess input or any other UI elements
-    // document.querySelector("#guessInput").value = ""; // If you have an input field for guesses
+    // Show a message
+    showMessage("Game reset! Start guessing again.");
 }
+
 

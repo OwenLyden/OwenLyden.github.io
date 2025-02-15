@@ -169,12 +169,14 @@ function checkGuess(guess) {
                 tile.classList.add("present"); // Yellow for misplaced
                 if (key && key.style.backgroundColor !== "green") {
                     key.style.backgroundColor = "yellow";
+                    key.style.color = "black";
                 }
                 letterCount[letter]--; // Reduce count for misplaced letters
             } else {
                 tile.classList.add("absent"); // Black for not in the word
                 if (key && key.style.backgroundColor !== "green" && key.style.backgroundColor !== "yellow") {
                     key.style.backgroundColor = "black";
+                    key.style.color = "gray";
                 }
             }
         }
